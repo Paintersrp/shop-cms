@@ -1,12 +1,15 @@
 import "@/styles/globals.css"
 import { Metadata } from "next"
+import { cookies } from "next/headers"
+import type { Session } from "@supabase/gotrue-js/src/lib/types"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
+import { useSessionStore } from "@/lib/stores/session"
+import { createClient } from "@/lib/supabase/server"
 import { cn } from "@/lib/utils"
-import { SiteHeader } from "@/components/site-header"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { ThemeProvider } from "@/components/theme-provider"
+import { SiteHeader } from "@/components/Header"
+import { Providers } from "@/components/providers/Providers"
 
 export const metadata: Metadata = {
   title: {
@@ -29,24 +32,26 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+  const session = await supabase.auth.getSession()
+
   return (
     <>
       <html lang="en" suppressHydrationWarning>
-        <head />
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
+        <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
+          <div className="min-h-screen">
+            <Providers
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              session={session.data.session}
+            >
               <SiteHeader />
-              <div className="flex-1">{children}</div>
-            </div>
-            <TailwindIndicator />
-          </ThemeProvider>
+              <div className="h-full">{children}</div>
+            </Providers>
+          </div>
         </body>
       </html>
     </>

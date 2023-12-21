@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+:root {
+  height: 100%;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -31,6 +37,15 @@
     --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
 
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --success: 120 39% 49%;
+    --success-foreground: 0 0% 98%;
+
+    --info: 209 100% 50%;
+    --info-foreground: 0 0% 100%;
+
     --ring: 215 20.2% 65.1%;
 
     --radius: 0.5rem;
@@ -40,8 +55,8 @@
     --background: 224 71% 4%;
     --foreground: 213 31% 91%;
 
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
+    --muted: 223 47% 22%;
+    --muted-foreground: 215.4 16.3% 90%;
 
     --accent: 216 34% 17%;
     --accent-foreground: 210 40% 98%;
@@ -63,6 +78,15 @@
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --success: 120 39% 40%;
+    --success-foreground: 0 0% 98%;
+
+    --info: 209 100% 50%;
+    --info-foreground: 0 0% 100%;
 
     --ring: 216 34% 17%;
 
