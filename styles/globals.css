@@ -8,6 +8,42 @@ body,
   height: 100%;
 }
 
+:root {
+  --transition-duration: 500ms;
+}
+
+.menu-icon {
+  transition: transform var(--transition-duration);
+}
+
+.menu-icon-top {
+  stroke-dasharray: 40 160;
+  transition: stroke-dashoffset var(--transition-duration);
+}
+
+.menu-icon-middle {
+  transform-origin: 50%;
+  transition: transform var(--transition-duration);
+}
+
+.menu-icon-bottom {
+  stroke-dasharray: 40 85;
+  transition: stroke-dashoffset var(--transition-duration);
+}
+
+.menu-open {
+  transform: rotate(45deg);
+}
+
+.menu-open .menu-icon-top,
+.menu-open .menu-icon-bottom {
+  stroke-dashoffset: -64px;
+}
+
+.menu-open .menu-icon-middle {
+  transform: rotate(90deg);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

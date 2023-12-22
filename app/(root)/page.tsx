@@ -2,12 +2,12 @@
 
 import { useEffect } from "react"
 
-import { useSessionStore } from "@/lib/stores/session"
+import { useUserStore } from "@/lib/stores/user"
 import { useShopModal } from "@/hooks/useShopModal"
 
 const SetupPage = () => {
   const { open, onOpen } = useShopModal()
-  const { session } = useSessionStore()
+  const { user } = useUserStore()
 
   useEffect(() => {
     if (!open) {

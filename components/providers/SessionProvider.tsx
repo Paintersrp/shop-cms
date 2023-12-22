@@ -1,24 +1,24 @@
 "use client"
 
 import { useEffect, type FC } from "react"
-import type { Session } from "@supabase/gotrue-js/src/lib/types"
+import type { User } from "@supabase/gotrue-js/src/lib/types"
 
-import { useSessionStore } from "@/lib/stores/session"
+import { useUserStore } from "@/lib/stores/user"
 
-interface SessionProviderProps {
-  session: Session | null
+interface UserProviderProps {
+  user: User | null
 }
 
-const SessionProvider: FC<SessionProviderProps> = ({ session }) => {
-  const { setSession } = useSessionStore()
+const UserProvider: FC<UserProviderProps> = ({ user }) => {
+  const { setUser } = useUserStore()
 
   useEffect(() => {
-    if (session) {
-      setSession(session)
+    if (user) {
+      setUser(user)
     }
-  }, [session, setSession])
+  }, [user, setUser])
 
   return null
 }
 
-export { SessionProvider }
+export { UserProvider }

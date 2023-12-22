@@ -1,7 +1,6 @@
 import type { ReactNode } from "react"
 import { redirect } from "next/navigation"
 
-import { useSessionStore } from "@/lib/stores/session"
 import { getServerClient } from "@/lib/supabase/hook"
 
 interface ShopLayoutProps {
@@ -12,14 +11,11 @@ interface ShopLayoutProps {
 async function ShopLayout({ children, params }: ShopLayoutProps) {
   const { storeId } = params
   const sb = getServerClient()
-  const { data } = await sb.auth.getSession()
-  const userId = data.session?.user.id
+  const { data } = await sb.auth.getUser()
 
   // 1 hour 50 minutes
 
-  console.log(userId)
-
-  if (!userId) {
+  if (!data.user) {
     redirect("/sign-in")
   }
 
@@ -27,7 +23,7 @@ async function ShopLayout({ children, params }: ShopLayoutProps) {
     .from("shops")
     .select()
     .eq("id", storeId)
-    .eq("userId", userId)
+    .eq("userId", data.user.id)
     .single()
 
   if (!shop) {
@@ -37,6 +33,7 @@ async function ShopLayout({ children, params }: ShopLayoutProps) {
   return (
     <>
       <div>Navigation</div>
+      {children}
     </>
   )
 }
