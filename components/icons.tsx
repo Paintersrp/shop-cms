@@ -1,4 +1,5 @@
 import {
+  LogIn,
   LucideProps,
   MailPlus,
   Moon,
@@ -16,6 +17,7 @@ export const Icons = {
   twitter: Twitter,
   contact: MailPlus,
   user: User,
+  login: LogIn,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

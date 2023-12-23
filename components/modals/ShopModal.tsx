@@ -20,7 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/Form"
 import { Input } from "@/components/ui/Input"
-import { Modal } from "@/components/ui/Modal"
+import { Modal } from "@/components/Modal"
 
 const ShopModal = ({}) => {
   const { open, onClose, onOpen } = useShopModal()
@@ -50,7 +50,7 @@ const ShopModal = ({}) => {
         title: "Shop creation error",
         description: "Something went wrong",
       })
-      
+
       console.log("[SHOPMODAL]", error)
     } finally {
       setLoading(false)

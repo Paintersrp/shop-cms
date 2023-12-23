@@ -6,7 +6,8 @@ import { Icons } from "@/components/Icons"
 import { Nav } from "@/components/Nav"
 import { ThemeToggle } from "@/components/ThemeToggle"
 
-import { MenuIcon } from "./MenuIcon"
+import { UserMenu } from "./UserMenu"
+import AuthButton from "./new/AuthButton"
 import { TooltipWrapper } from "./ui/Tooltip"
 
 export function SiteHeader() {
@@ -47,20 +48,8 @@ export function SiteHeader() {
             </TooltipWrapper>
 
             <ThemeToggle />
-
-            <TooltipWrapper content="View code on Github">
-              <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
-                <div
-                  className={buttonVariants({
-                    size: "icon",
-                    variant: "ghost",
-                  })}
-                >
-                  <Icons.user className="h-5 w-5" />
-                  <span className="sr-only">GitHub</span>
-                </div>
-              </Link>
-            </TooltipWrapper>
+            <UserMenu />
+            {/* <AuthButton /> */}
           </nav>
         </div>
       </div>
