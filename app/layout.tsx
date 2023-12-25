@@ -5,7 +5,8 @@ import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { getServerClient } from "@/lib/supabase/hook"
 import { cn } from "@/lib/utils"
-import { SiteHeader } from "@/components/Header"
+import { Footer } from "@/components/Footer"
+import { Header } from "@/components/header/Header"
 import { Providers } from "@/components/providers/Providers"
 
 export const metadata: Metadata = {
@@ -34,17 +35,18 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const { data } = await sb.auth.getUser()
 
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
-          <div className="min-h-screen">
-            <Providers attribute="class" defaultTheme="system" enableSystem user={data.user}>
-              <SiteHeader />
-              <div className="h-full">{children}</div>
-            </Providers>
-          </div>
-        </body>
-      </html>
-    </>
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
+        <div className="flex min-h-screen flex-col">
+          <Providers attribute="class" defaultTheme="system" enableSystem user={data.user}>
+            {/* <Header /> */}
+            {/* <div className="flex-1 h-full">{children}</div> */}
+            {/* <Footer /> */}
+            
+            {children}
+          </Providers>
+        </div>
+      </body>
+    </html>
   )
 }

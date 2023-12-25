@@ -20,6 +20,13 @@ export async function POST(req: Request) {
       return new NextResponse("Name is required", { status: 400 })
     }
 
+    // Check if the shop name already exists
+    const { data: existingShop } = await supabase.from("shops").select().eq("name", name).single()
+
+    if (existingShop) {
+      return new NextResponse("Shop name is already taken", { status: 400 })
+    }
+
     const { data: shop } = await supabase.from("shops").insert({ userId, name }).select()
 
     if (!shop) {

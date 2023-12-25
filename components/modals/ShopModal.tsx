@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import axios from "axios"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import * as z from "zod"
 
 import { ShopFormRequest, ShopFormSchema } from "@/lib/validation/shop-form"
 import { useShopModal } from "@/hooks/useShopModal"
-import { toast } from "@/hooks/useToast"
 import { Button } from "@/components/ui/Button"
 import {
   Form,
@@ -40,14 +40,13 @@ const ShopModal = ({}) => {
 
       const { data } = await axios.post("/api/shops", values)
 
-      toast({
-        title: "Shop created successfully!",
+      window.location.assign(`/${data.id}`)
+
+      toast("Shop created successfully!", {
         description: "Your shop has been created",
-        variant: "success",
       })
     } catch (error) {
-      toast({
-        title: "Shop creation error",
+      toast("Shop creation error!", {
         description: "Something went wrong",
       })
 
@@ -82,7 +81,7 @@ const ShopModal = ({}) => {
                 )}
               />
               <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-                <Button disabled={loading} variant="outline" onClick={onClose}>
+                <Button disabled={loading} variant="outline" onClick={onClose} type="button">
                   Cancel
                 </Button>
                 <Button disabled={loading} type="submit">

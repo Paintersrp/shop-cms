@@ -4,19 +4,18 @@ import { useState, type FC } from "react"
 
 import "@/styles/globals.css"
 import { cn } from "@/lib/utils"
-
-import { Button, buttonVariants } from "./ui/Button"
+import { useUserMenu } from "@/hooks/useUserMenu"
+import { Button } from "@/components/ui/Button"
 
 const MenuIcon: FC = () => {
-  const [open, setOpen] = useState(false)
+  const { open, setOpen } = useUserMenu()
 
   const onClick = (): void => {
-    console.log("here")
     setOpen(!open)
   }
 
   return (
-    <Button variant="ghost" size="icon" onClick={onClick}>
+    <Button variant="ghost" size="icon">
       <svg
         className={cn(open ? "menu-open" : "", "menu-icon h-14 w-14")}
         viewBox="0 0 100 100"

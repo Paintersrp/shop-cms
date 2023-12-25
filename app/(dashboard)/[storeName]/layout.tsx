@@ -2,18 +2,17 @@ import type { ReactNode } from "react"
 import { redirect } from "next/navigation"
 
 import { getServerClient } from "@/lib/supabase/hook"
+import { Header } from "@/components/header/Header"
 
 interface ShopLayoutProps {
   children: ReactNode
-  params: { storeId: string }
+  params: { storeName: string }
 }
 
 async function ShopLayout({ children, params }: ShopLayoutProps) {
-  const { storeId } = params
   const sb = getServerClient()
   const { data } = await sb.auth.getUser()
-
-  // 1 hour 50 minutes
+  const { storeName } = params
 
   if (!data.user) {
     redirect("/sign-in")
@@ -22,7 +21,7 @@ async function ShopLayout({ children, params }: ShopLayoutProps) {
   const { data: shop } = await sb
     .from("shops")
     .select()
-    .eq("id", storeId)
+    .eq("name", storeName)
     .eq("userId", data.user.id)
     .single()
 
@@ -32,8 +31,8 @@ async function ShopLayout({ children, params }: ShopLayoutProps) {
 
   return (
     <>
-      <div>Navigation</div>
-      {children}
+      <Header />
+      <section className="px-4 sm:px-2 sm:container sm:py-4">{children}</section>
     </>
   )
 }

@@ -4,12 +4,9 @@ import type { User } from "@supabase/gotrue-js/src/lib/types"
 import { ThemeProvider } from "next-themes"
 import { type ThemeProviderProps } from "next-themes/dist/types"
 
-import { Toaster } from "@/components/ui/Toaster"
-
-import { TooltipProvider } from "../ui/Tooltip"
-import { ModalProvider } from "./ModalProvider"
-import { TailwindIndicatorProvider } from "./TailwindIndicatorProvider"
-import { UserProvider } from "./SessionProvider"
+import { Toaster } from "@/components/ui/Sonner"
+import { TooltipProvider } from "@/components/ui/Tooltip"
+import { ModalProvider, TailwindIndicatorProvider, UserProvider } from "@/components/providers"
 
 export function Providers({
   children,

@@ -1,24 +1,81 @@
 import {
+  Check,
+  ChevronsUpDown,
+  Copyright,
+  Key,
   LogIn,
+  LogOut,
   LucideProps,
   MailPlus,
   Moon,
+  PlusCircle,
+  Settings,
+  ShoppingBag,
   SunMedium,
+  Trash,
   Twitter,
   User,
+  UserPlus,
+  X,
   type Icon as LucideIcon,
 } from "lucide-react"
 
 export type Icon = LucideIcon
 
 export const Icons = {
-  sun: SunMedium,
-  moon: Moon,
-  twitter: Twitter,
-  contact: MailPlus,
-  user: User,
-  login: LogIn,
-  logo: (props: LucideProps) => (
+  Sun: SunMedium,
+  Moon,
+  Twitter,
+  Contact: MailPlus,
+  User,
+  Close: X,
+  Copyright,
+  Settings,
+  LogOut,
+  Register: UserPlus,
+  ShoppingBag,
+  ChevronsUpDown,
+  Check,
+  PlusCircle,
+  Delete: Trash,
+  Shop: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      {...props}
+    >
+      <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" />
+      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+      <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" />
+      <path d="M2 7h20" />
+      <path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7" />
+    </svg>
+  ),
+  Login: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      {...props}
+    >
+      <path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z" />
+      <circle cx="16.5" cy="7.5" r=".5" />
+    </svg>
+  ),
+  Logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -36,7 +93,7 @@ export const Icons = {
       <path d="M12 15V7" />
     </svg>
   ),
-  gitHub: (props: LucideProps) => (
+  GitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path
         fill="currentColor"

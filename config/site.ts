@@ -8,14 +8,6 @@ export const siteConfig = {
       title: "Home",
       href: "/",
     },
-    {
-      title: "Sign In",
-      href: "/sign-in",
-    },
-    {
-      title: "Sign Up",
-      href: "/sign-up",
-    },
   ],
   links: {
     email: "mailto:paintersrp@gmail.com",
