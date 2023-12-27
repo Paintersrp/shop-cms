@@ -4,10 +4,10 @@ import type { FC } from "react"
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/Button"
+import { buttonVariants } from "@/components/ui/Buttonn"
 import { Text } from "@/components/ui/Text"
 import { TooltipWrapper } from "@/components/ui/Tooltip"
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/Iconss"
 
 const Footer: FC = () => {
   return (

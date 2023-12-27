@@ -9,7 +9,8 @@ import { toast } from "sonner"
 
 import { Tables } from "@/types/supabase"
 import { SettingsRequest, SettingsSchema } from "@/lib/validation/settings-form"
-import { Button } from "@/components/ui/Button"
+import { useOrigin } from "@/hooks/useOrigin"
+import { Button } from "@/components/ui/Buttonn"
 import {
   Form,
   FormControl,
@@ -18,22 +19,22 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/Form"
-import { Heading } from "@/components/ui/Heading"
 import { Input } from "@/components/ui/Input"
 import { Separator } from "@/components/ui/Separator"
-import { Icons } from "@/components/Icons"
+import { ApiItem } from "@/components/ApiItem"
+import { Heading } from "@/components/Heading"
+import { Icons } from "@/components/Iconss"
+import { ConfirmationModal } from "@/components/modals/ConfirmationModal"
 
 interface SettingsFormProps {
   initialData: Tables<"shops">
 }
 
-// 3:10:47
-
 const SettingsForm: FC<SettingsFormProps> = ({ initialData }) => {
-  const [open, setOpen] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const { storeName } = useParams()
+  const { shopSlug } = useParams()
   const router = useRouter()
+  const origin = useOrigin()
 
   const form = useForm<SettingsRequest>({
     resolver: zodResolver(SettingsSchema),
@@ -44,12 +45,32 @@ const SettingsForm: FC<SettingsFormProps> = ({ initialData }) => {
     try {
       setIsLoading(true)
 
-      axios.patch(`/api/shops/${storeName}`, data)
+      await axios.patch(`/api/shops/${shopSlug}`, data)
+
       router.push(`/${data.name}/settings`)
       router.refresh()
-      toast.success("Store name has been updated")
+
+      toast.success("Shop has been updated")
     } catch (error) {
+      console.log(error)
       toast.error("Something went wrong")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const onDelete = async () => {
+    try {
+      setIsLoading(true)
+
+      await axios.delete(`/api/shops/${shopSlug}`)
+
+      router.refresh()
+      router.push("/")
+
+      toast.success("Shop was successfully deleted.")
+    } catch (error) {
+      toast.error("Make sure you have removed all products and categories first.")
     } finally {
       setIsLoading(false)
     }
@@ -59,14 +80,18 @@ const SettingsForm: FC<SettingsFormProps> = ({ initialData }) => {
     <>
       <div className="flex items-center justify-between">
         <Heading title="Settings" description="Manage store preferences" />
-        <Button
-          variant="destructive"
-          size="iconSm"
-          onClick={() => setOpen(true)}
-          disabled={isLoading}
-        >
-          <Icons.Delete className="h-4 w-4" />
-        </Button>
+        <ConfirmationModal isLoading={isLoading} onConfirm={onDelete}>
+          <Button
+            variant="destructive"
+            size="iconSm"
+            onClick={(e) => {
+              e.stopPropagation()
+            }}
+          >
+            <Icons.Delete className="h-4 w-4" />
+            <span className="sr-only">Delete</span>
+          </Button>
+        </ConfirmationModal>
       </div>
       <Separator />
       <Form {...form}>
@@ -85,12 +110,31 @@ const SettingsForm: FC<SettingsFormProps> = ({ initialData }) => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="slug"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Slug</FormLabel>
+                  <FormControl>
+                    <Input disabled={isLoading} placeholder="Shop Slug" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
           <Button disabled={isLoading} className="ml-auto" type="submit">
             Save changes
           </Button>
         </form>
       </Form>
+      <Separator />
+      <ApiItem
+        variant="public"
+        title="NEXT_PUBLIC_API_URL"
+        description={`${origin}/api/${shopSlug}`}
+      />
     </>
   )
 }

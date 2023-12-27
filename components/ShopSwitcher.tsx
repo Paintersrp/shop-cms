@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation"
 import { Tables } from "@/types/supabase"
 import { cn } from "@/lib/utils"
 import { useShopModal } from "@/hooks/useShopModal"
-import { Button } from "@/components/ui/Button"
+import { Button } from "@/components/ui/Buttonn"
 import {
   Command,
   CommandEmpty,
@@ -17,7 +17,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/Command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover"
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/Iconss"
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
@@ -28,19 +28,20 @@ interface ShopSwitcherProps extends PopoverTriggerProps {
 const ShopSwitcher: FC<ShopSwitcherProps> = ({ className, items = [] }) => {
   const [open, setOpen] = useState<boolean>(false)
   const shopModal = useShopModal()
-  const params = useParams()
+  const { shopSlug } = useParams()
   const router = useRouter()
 
   const formattedItems = items.map((item) => ({
     id: item.id,
     name: item.name,
+    slug: item.slug,
   }))
 
-  const currentShop = formattedItems.find((item) => item.name === params.storeName)
+  const currentShop = formattedItems.find((item) => item.slug === shopSlug)
 
-  const onShopSelect = (shop: { id: number; name: string }) => {
+  const onShopSelect = (shop: { id: number; name: string | null; slug: string }) => {
     setOpen(false)
-    router.push(`/${shop.name}`)
+    router.push(`/${shop.slug}`)
   }
 
   return (
@@ -54,7 +55,7 @@ const ShopSwitcher: FC<ShopSwitcherProps> = ({ className, items = [] }) => {
           aria-label="Select a store"
           className={cn("w-[200px] justify-between", className)}
         >
-          <Icons.Shop className="mr-2 h-4 w-4" />
+          <Icons.ShoppingBag className="mr-2 h-4 w-4" />
           {currentShop?.name ?? "Shop Name"}
           <Icons.ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -67,7 +68,7 @@ const ShopSwitcher: FC<ShopSwitcherProps> = ({ className, items = [] }) => {
             <CommandGroup heading="Shops">
               {formattedItems.map((shop) => (
                 <CommandItem className="" key={shop.id} onSelect={() => onShopSelect(shop)}>
-                  <Icons.Shop className="mr-2 h-4 w-4" />
+                  <Icons.ShoppingBag className="mr-2 h-4 w-4" />
                   {shop.name}
                   <Icons.Check
                     className={cn(

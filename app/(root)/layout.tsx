@@ -19,7 +19,7 @@ export default async function SetupLayout({ children }: { children: ReactNode })
     .single()
 
   if (store) {
-    redirect(`/${store.name}`)
+    redirect(`/${store.slug}`)
   }
 
   return <>{children}</>

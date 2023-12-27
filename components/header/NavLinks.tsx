@@ -2,14 +2,12 @@
 
 import type { FC } from "react"
 import Link from "next/link"
-import { redirect, useParams, usePathname } from "next/navigation"
+import { useParams, usePathname } from "next/navigation"
 
-import { NavItem } from "@/types/nav"
 import { Tables } from "@/types/supabase"
 import { siteConfig } from "@/config/site"
-import { useUserStore } from "@/lib/stores/user"
-import { buttonVariants } from "@/components/ui/Button"
-import { Icons } from "@/components/Icons"
+import { buttonVariants } from "@/components/ui/Buttonn"
+import { Icons } from "@/components/Iconss"
 
 import { ShopSwitcher } from "../ShopSwitcher"
 
@@ -19,23 +17,43 @@ interface NavLinksProps {
 
 const NavLinks: FC<NavLinksProps> = ({ shops }) => {
   const pathname = usePathname()
-  const params = useParams()
+  const { shopSlug } = useParams()
 
   const routes = [
     {
-      href: `/${params.storeName}/settings`,
+      href: `/${shopSlug}`,
+      title: "Overview",
+    },
+    {
+      href: `/${shopSlug}/billboards`,
+      title: "Billboards",
+    },
+    {
+      href: `/${shopSlug}/categories`,
+      title: "Categories",
+    },
+    {
+      href: `/${shopSlug}/sizes`,
+      title: "Sizes",
+    },
+    {
+      href: `/${shopSlug}/colors`,
+      title: "Colors",
+    },
+    {
+      href: `/${shopSlug}/settings`,
       title: "Settings",
     },
   ]
 
   return (
     <div className="flex items-center">
-      <Link href="/" className="flex items-center space-x-2">
+      {/* <Link href="/" className="flex items-center space-x-2">
         <Icons.ShoppingBag className="h-6 w-6" />
-        <span className="inline-block font-bold">{siteConfig.name}</span>
-      </Link>
+        <span className="hidden sm:inline-block font-bold">{siteConfig.name}</span>
+      </Link> */}
 
-      <ShopSwitcher items={shops} className="ml-6 mr-3" />
+      <ShopSwitcher items={shops} className="mr-3" />
       <nav className="flex items-center">
         {routes.map((link) => {
           const active = pathname === link.href

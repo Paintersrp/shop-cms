@@ -14,20 +14,38 @@ export async function POST(req: Request) {
     }
 
     const userId = data.session.user.id
-    const { name } = await req.json()
+    const { name, slug } = await req.json()
 
     if (!name) {
       return new NextResponse("Name is required", { status: 400 })
     }
 
-    // Check if the shop name already exists
-    const { data: existingShop } = await supabase.from("shops").select().eq("name", name).single()
+    if (!slug) {
+      return new NextResponse("Slug is required", { status: 400 })
+    }
 
-    if (existingShop) {
+    // Check if the shop name already exists
+    const { data: existingShopByName } = await supabase
+      .from("shops")
+      .select()
+      .eq("name", name)
+      .single()
+
+    if (existingShopByName) {
       return new NextResponse("Shop name is already taken", { status: 400 })
     }
 
-    const { data: shop } = await supabase.from("shops").insert({ userId, name }).select()
+    const { data: existingShopBySlug } = await supabase
+      .from("shops")
+      .select()
+      .eq("slug", slug)
+      .single()
+
+    if (existingShopBySlug) {
+      return new NextResponse("Shop slug is already taken", { status: 400 })
+    }
+
+    const { data: shop } = await supabase.from("shops").insert({ userId, name, slug }).select()
 
     if (!shop) {
       return new NextResponse("Internal error", { status: 500 })

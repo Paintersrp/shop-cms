@@ -5,13 +5,13 @@ import { getServerClient } from "@/lib/supabase/hook"
 import { SettingsForm } from "@/components/SettingsForm"
 
 interface PageProps {
-  params: { storeName: string }
+  params: { shopSlug: string }
 }
 
 const Page: FC<PageProps> = async ({ params }) => {
   const sb = getServerClient()
   const { data } = await sb.auth.getUser()
-  const { storeName } = params
+  const { shopSlug } = params
 
   if (!data.user) {
     redirect("/sign-in")
@@ -20,7 +20,7 @@ const Page: FC<PageProps> = async ({ params }) => {
   const { data: shop } = await sb
     .from("shops")
     .select()
-    .eq("name", storeName)
+    .eq("slug", shopSlug)
     .eq("userId", data.user.id)
     .single()
 

@@ -1,8 +1,126 @@
-export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
 
 export interface Database {
   public: {
     Tables: {
+      billboards: {
+        Row: {
+          created_at: string
+          id: number
+          image_url: string
+          label: string
+          shop_slug: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          image_url: string
+          label: string
+          shop_slug: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          image_url?: string
+          label?: string
+          shop_slug?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "billboards_shop_slug_fkey"
+            columns: ["shop_slug"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["slug"]
+          }
+        ]
+      }
+      categories: {
+        Row: {
+          billboard_id: number
+          created_at: string
+          id: number
+          name: string
+          shop_slug: string
+          updated_at: string
+        }
+        Insert: {
+          billboard_id: number
+          created_at?: string
+          id?: number
+          name: string
+          shop_slug: string
+          updated_at?: string
+        }
+        Update: {
+          billboard_id?: number
+          created_at?: string
+          id?: number
+          name?: string
+          shop_slug?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "categories_billboard_id_fkey"
+            columns: ["billboard_id"]
+            isOneToOne: false
+            referencedRelation: "billboards"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "categories_shop_slug_fkey"
+            columns: ["shop_slug"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["slug"]
+          }
+        ]
+      }
+      colors: {
+        Row: {
+          created_at: string
+          id: number
+          name: string
+          shop_slug: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          name: string
+          shop_slug: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          name?: string
+          shop_slug?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "colors_shop_slug_fkey"
+            columns: ["shop_slug"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["slug"]
+          }
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -43,21 +161,62 @@ export interface Database {
           created_at: string
           id: number
           name: string
+          slug: string
+          updated_at: string
           userId: string
         }
         Insert: {
           created_at?: string
           id?: number
-          name?: string | null
-          userId?: string | null
+          name: string
+          slug: string
+          updated_at?: string
+          userId: string
         }
         Update: {
           created_at?: string
           id?: number
-          name?: string | null
-          userId?: string | null
+          name?: string
+          slug?: string
+          updated_at?: string
+          userId?: string
         }
         Relationships: []
+      }
+      sizes: {
+        Row: {
+          created_at: string
+          id: number
+          name: string
+          shop_slug: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          name: string
+          shop_slug: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          name?: string
+          shop_slug?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sizes_shop_slug_fkey"
+            columns: ["shop_slug"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["slug"]
+          }
+        ]
       }
     }
     Views: {
@@ -92,7 +251,8 @@ export type Tables<
     : never
   : PublicTableNameOrOptions extends keyof (Database["public"]["Tables"] &
       Database["public"]["Views"])
-  ? (Database["public"]["Tables"] & Database["public"]["Views"])[PublicTableNameOrOptions] extends {
+  ? (Database["public"]["Tables"] &
+      Database["public"]["Views"])[PublicTableNameOrOptions] extends {
       Row: infer R
     }
     ? R
@@ -100,7 +260,9 @@ export type Tables<
   : never
 
 export type TablesInsert<
-  PublicTableNameOrOptions extends keyof Database["public"]["Tables"] | { schema: keyof Database },
+  PublicTableNameOrOptions extends
+    | keyof Database["public"]["Tables"]
+    | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
     ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
     : never = never
@@ -119,7 +281,9 @@ export type TablesInsert<
   : never
 
 export type TablesUpdate<
-  PublicTableNameOrOptions extends keyof Database["public"]["Tables"] | { schema: keyof Database },
+  PublicTableNameOrOptions extends
+    | keyof Database["public"]["Tables"]
+    | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
     ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
     : never = never
@@ -138,7 +302,9 @@ export type TablesUpdate<
   : never
 
 export type Enums<
-  PublicEnumNameOrOptions extends keyof Database["public"]["Enums"] | { schema: keyof Database },
+  PublicEnumNameOrOptions extends
+    | keyof Database["public"]["Enums"]
+    | { schema: keyof Database },
   EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
     ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
     : never = never

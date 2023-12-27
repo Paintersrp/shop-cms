@@ -6,13 +6,13 @@ import { Header } from "@/components/header/Header"
 
 interface ShopLayoutProps {
   children: ReactNode
-  params: { storeName: string }
+  params: { shopSlug: string }
 }
 
 async function ShopLayout({ children, params }: ShopLayoutProps) {
   const sb = getServerClient()
   const { data } = await sb.auth.getUser()
-  const { storeName } = params
+  const { shopSlug } = params
 
   if (!data.user) {
     redirect("/sign-in")
@@ -21,7 +21,7 @@ async function ShopLayout({ children, params }: ShopLayoutProps) {
   const { data: shop } = await sb
     .from("shops")
     .select()
-    .eq("name", storeName)
+    .eq("slug", shopSlug)
     .eq("userId", data.user.id)
     .single()
 
@@ -32,7 +32,7 @@ async function ShopLayout({ children, params }: ShopLayoutProps) {
   return (
     <>
       <Header />
-      <section className="px-4 sm:px-2 sm:container sm:py-4">{children}</section>
+      <section className="px-6 sm:px-4 sm:container sm:py-4">{children}</section>
     </>
   )
 }

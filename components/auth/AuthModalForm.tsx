@@ -2,7 +2,7 @@
 
 import { FC } from "react"
 
-import { Button } from "@/components/ui/Button"
+import { Button } from "@/components/ui/Buttonn"
 import { Field } from "@/components/Field"
 import { AuthForm } from "@/components/auth/AuthForm"
 import { useAuth } from "@/components/auth/useAuth"

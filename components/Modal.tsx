@@ -21,6 +21,8 @@ interface ModalProps {
 
 const Modal: FC<ModalProps> = ({ title, description, open, onClose, className, children }) => {
   const onChange = (open: boolean) => {
+    console.log("Here")
+    console.log(open)
     if (open) {
       onClose()
     }

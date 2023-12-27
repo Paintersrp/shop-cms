@@ -10,7 +10,7 @@ import * as z from "zod"
 
 import { ShopFormRequest, ShopFormSchema } from "@/lib/validation/shop-form"
 import { useShopModal } from "@/hooks/useShopModal"
-import { Button } from "@/components/ui/Button"
+import { Button } from "@/components/ui/Buttonn"
 import {
   Form,
   FormControl,
@@ -31,6 +31,7 @@ const ShopModal = ({}) => {
     resolver: zodResolver(ShopFormSchema),
     defaultValues: {
       name: "",
+      slug: "",
     },
   })
 
@@ -40,12 +41,13 @@ const ShopModal = ({}) => {
 
       const { data } = await axios.post("/api/shops", values)
 
-      window.location.assign(`/${data.id}`)
+      window.location.assign(`/${data.slug}`)
 
       toast("Shop created successfully!", {
         description: "Your shop has been created",
       })
     } catch (error) {
+      console.log(error)
       toast("Shop creation error!", {
         description: "Something went wrong",
       })
@@ -66,7 +68,7 @@ const ShopModal = ({}) => {
       <div>
         <div className="space-y-4 py-2 pb-4">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
               <FormField
                 control={form.control}
                 name="name"
@@ -80,7 +82,20 @@ const ShopModal = ({}) => {
                   </FormItem>
                 )}
               />
-              <div className="pt-6 space-x-2 flex items-center justify-end w-full">
+              <FormField
+                control={form.control}
+                name="slug"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Shop URL</FormLabel>
+                    <FormControl>
+                      <Input disabled={loading} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="space-x-2 flex items-center justify-end w-full">
                 <Button disabled={loading} variant="outline" onClick={onClose} type="button">
                   Cancel
                 </Button>

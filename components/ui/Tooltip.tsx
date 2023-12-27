@@ -36,7 +36,7 @@ const TooltipWrapper: React.FC<TooltipWrapperProps> = ({ children, content }) =>
   return (
     <Tooltip>
       <TooltipTrigger>{children}</TooltipTrigger>
-      <TooltipContent>
+      <TooltipContent side="bottom">
         <p className="dark:text-white text-dark">{content}</p>
       </TooltipContent>
     </Tooltip>
