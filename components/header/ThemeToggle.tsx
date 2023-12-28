@@ -4,7 +4,7 @@ import type { FC } from "react"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
-import { Button } from "@/components/ui/Buttonn"
+import { Button } from "@/components/ui/Button"
 import { TooltipWrapper } from "@/components/ui/Tooltip"
 
 const ThemeToggle: FC = () => {

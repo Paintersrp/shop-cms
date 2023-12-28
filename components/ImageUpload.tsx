@@ -5,8 +5,8 @@ import Image from "next/image"
 import { CldUploadWidget } from "next-cloudinary"
 
 import { useMounted } from "@/hooks/useMounted"
-import { Button } from "@/components/ui/Buttonn"
-import { Icons } from "@/components/Iconss"
+import { Button } from "@/components/ui/Button"
+import { Icons } from "@/components/Icons"
 
 interface ImageUploadProps {
   disabled?: boolean

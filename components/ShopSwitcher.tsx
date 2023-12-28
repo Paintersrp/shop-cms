@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation"
 import { Tables } from "@/types/supabase"
 import { cn } from "@/lib/utils"
 import { useShopModal } from "@/hooks/useShopModal"
-import { Button } from "@/components/ui/Buttonn"
+import { Button } from "@/components/ui/Button"
 import {
   Command,
   CommandEmpty,
@@ -17,7 +17,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/Command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover"
-import { Icons } from "@/components/Iconss"
+import { Icons } from "@/components/Icons"
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 

@@ -4,9 +4,9 @@ import { FC } from "react"
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/Dialog"
 import { Text } from "@/components/ui/Text"
-import { Icons } from "@/components/Iconss"
-import { AuthModalForm } from "@/components/auth/AuthModalForm"
-import { useAuthModal } from "@/components/auth/useAuthModal"
+import { Icons } from "@/components/Icons"
+import { AuthModalForm } from "@/components/auth/components/AuthModalForm"
+import { useAuthModal } from "@/components/auth/hooks/useAuthModal"
 
 interface AuthModalProps {
   open?: boolean

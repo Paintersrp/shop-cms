@@ -2,9 +2,9 @@
 
 import { Table } from "@tanstack/react-table"
 
-import { Button } from "@/components/ui/Buttonn"
+import { Button } from "@/components/ui/Button"
 import { Input } from "@/components/ui/Input"
-import { Icons } from "@/components/Iconss"
+import { Icons } from "@/components/Icons"
 
 import { DataTableFacetedFilter } from "./DataTableFacetedFilter"
 import { DataTableViewOptions } from "./DataTableViewOptions"

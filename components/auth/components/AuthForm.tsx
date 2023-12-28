@@ -2,7 +2,7 @@ import type { FC } from "react"
 import type { UseFormReturn } from "react-hook-form"
 
 import { AuthRequest } from "@/lib/validation/auth"
-import { Button } from "@/components/ui/Buttonn"
+import { Button } from "@/components/ui/Button"
 import { Field } from "@/components/Field"
 
 interface AuthFormProps {

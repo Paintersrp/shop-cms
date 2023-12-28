@@ -2,11 +2,11 @@
 
 import { FC } from "react"
 
-import { Button } from "@/components/ui/Buttonn"
+import { Button } from "@/components/ui/Button"
 import { Field } from "@/components/Field"
-import { AuthForm } from "@/components/auth/AuthForm"
-import { useAuth } from "@/components/auth/useAuth"
-import { View, useAuthModal } from "@/components/auth/useAuthModal"
+import { AuthForm } from "@/components/auth/components/AuthForm"
+import { useAuth } from "@/components/auth/hooks/useAuth"
+import { View, useAuthModal } from "@/components/auth/hooks/useAuthModal"
 
 /**
  * Sign In Component

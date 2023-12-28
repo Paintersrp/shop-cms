@@ -2,7 +2,7 @@ import { Column } from "@tanstack/react-table"
 
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/Badge"
-import { Button } from "@/components/ui/Buttonn"
+import { Button } from "@/components/ui/Button"
 import {
   Command,
   CommandEmpty,
@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/Command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover"
 import { Separator } from "@/components/ui/Separator"
-import { Icons } from "@/components/Iconss"
+import { Icons } from "@/components/Icons"
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>

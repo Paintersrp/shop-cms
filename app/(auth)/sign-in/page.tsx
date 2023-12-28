@@ -3,11 +3,11 @@ import { redirect } from "next/navigation"
 
 import { getServerClient } from "@/lib/supabase/hook"
 import { cn } from "@/lib/utils"
-import { Button, buttonVariants } from "@/components/ui/Buttonn"
+import { Button, buttonVariants } from "@/components/ui/Button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/Cardd"
 import { Text } from "@/components/ui/Text"
-import { Icons } from "@/components/Iconss"
-import { AuthModalFormSignIn } from "@/components/auth/AuthModalForm"
+import { Icons } from "@/components/Icons"
+import { AuthModalFormSignIn } from "@/components/auth/components/AuthModalForm"
 
 const Page = async () => {
   const sb = getServerClient()

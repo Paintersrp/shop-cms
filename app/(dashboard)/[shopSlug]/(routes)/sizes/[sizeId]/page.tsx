@@ -12,7 +12,7 @@ interface SizePageProps {
 const SizePage = async ({ params }: SizePageProps) => {
   const sb = getServerClient()
 
-  const { sizeId, shopSlug } = params
+  const { sizeId } = params
 
   const { data: size } = await sb.from("sizes").select().eq("id", sizeId).single()
 

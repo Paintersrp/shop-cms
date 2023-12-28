@@ -3,7 +3,7 @@
 import { type FC, type ReactNode } from "react"
 
 import { useMounted } from "@/hooks/useMounted"
-import { Button } from "@/components/ui/Buttonn"
+import { Button } from "@/components/ui/Button"
 import {
   Dialog,
   DialogClose,

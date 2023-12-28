@@ -5,7 +5,7 @@ import type { ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "@/components/ui/Checkbox"
 import { DataTableColumnHeader } from "@/components/tables/DataTableColumnHeader"
 
-import { SizeTableRowActions } from "./SizeTableRowActions"
+import { SizeRowActions } from "./SizeRowActions"
 
 export type SizeColumn = {
   id: number
@@ -67,6 +67,6 @@ export const SizeColumns: ColumnDef<SizeColumn>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <SizeTableRowActions row={row} />,
+    cell: ({ row }) => <SizeRowActions row={row} />,
   },
 ]

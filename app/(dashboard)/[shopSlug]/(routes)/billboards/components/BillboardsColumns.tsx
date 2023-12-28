@@ -5,14 +5,12 @@ import type { ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "@/components/ui/Checkbox"
 import { DataTableColumnHeader } from "@/components/tables/DataTableColumnHeader"
 
-import { BillboardTableRowActions } from "./BillboardsTableRowActions"
+import { BillboardRowActions } from "./BillboardsRowActions"
 
 export type BillboardColumn = {
   id: number
   label: string
   created_at: string
-  //   updated_at: string
-  //   shop_slug: string
 }
 
 export const BillboardColumns: ColumnDef<BillboardColumn>[] = [
@@ -67,6 +65,6 @@ export const BillboardColumns: ColumnDef<BillboardColumn>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <BillboardTableRowActions row={row} />,
+    cell: ({ row }) => <BillboardRowActions row={row} />,
   },
 ]

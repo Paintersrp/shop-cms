@@ -10,7 +10,7 @@ import * as z from "zod"
 
 import { ShopFormRequest, ShopFormSchema } from "@/lib/validation/shop-form"
 import { useShopModal } from "@/hooks/useShopModal"
-import { Button } from "@/components/ui/Buttonn"
+import { Button } from "@/components/ui/Button"
 import {
   Form,
   FormControl,

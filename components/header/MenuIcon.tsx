@@ -5,7 +5,7 @@ import { useState, type FC } from "react"
 import "@/styles/globals.css"
 import { cn } from "@/lib/utils"
 import { useUserMenu } from "@/hooks/useUserMenu"
-import { Button } from "@/components/ui/Buttonn"
+import { Button } from "@/components/ui/Button"
 
 const MenuIcon: FC = () => {
   const { open, setOpen } = useUserMenu()

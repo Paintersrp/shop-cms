@@ -2,7 +2,7 @@
 
 import type { Table } from "@tanstack/react-table"
 
-import { Button } from "@/components/ui/Buttonn"
+import { Button } from "@/components/ui/Button"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu"
-import { Icons } from "@/components/Iconss"
+import { Icons } from "@/components/Icons"
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>

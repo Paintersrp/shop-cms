@@ -5,7 +5,7 @@ import type { ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "@/components/ui/Checkbox"
 import { DataTableColumnHeader } from "@/components/tables/DataTableColumnHeader"
 
-import { ColorTableRowActions } from "./ColorTableRowActions"
+import { ColorRowActions } from "./ColorRowActions"
 
 export type ColorColumn = {
   id: number
@@ -72,6 +72,6 @@ export const ColorColumns: ColumnDef<ColorColumn>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <ColorTableRowActions row={row} />,
+    cell: ({ row }) => <ColorRowActions row={row} />,
   },
 ]

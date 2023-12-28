@@ -2,11 +2,11 @@ import Link from "next/link"
 import { redirect } from "next/navigation"
 
 import { getServerClient } from "@/lib/supabase/hook"
-import { buttonVariants } from "@/components/ui/Buttonn"
+import { buttonVariants } from "@/components/ui/Button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/Cardd"
 import { Text } from "@/components/ui/Text"
-import { Icons } from "@/components/Iconss"
-import { AuthModalFormForgot } from "@/components/auth/AuthModalForm"
+import { Icons } from "@/components/Icons"
+import { AuthModalFormForgot } from "@/components/auth/components/AuthModalForm"
 
 const Page = async () => {
   const sb = getServerClient()

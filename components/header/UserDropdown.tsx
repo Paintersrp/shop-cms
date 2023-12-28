@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site"
 import { useUserStore } from "@/lib/stores/user"
 import { cn } from "@/lib/utils"
 import { useUserMenu } from "@/hooks/useUserMenu"
-import { Button } from "@/components/ui/Buttonn"
+import { Button } from "@/components/ui/Button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,10 +15,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu"
-import { Icons } from "@/components/Iconss"
+import { Icons } from "@/components/Icons"
 
-import { useAuth } from "../auth/useAuth"
-import { useAuthModal } from "../auth/useAuthModal"
+import { useAuth } from "../auth/hooks/useAuth"
+import { useAuthModal } from "../auth/hooks/useAuthModal"
 
 export function UserDropdownMenu() {
   const { open, setOpen } = useUserMenu()

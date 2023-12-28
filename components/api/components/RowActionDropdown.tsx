@@ -1,10 +1,8 @@
 "use client"
 
-import { useParams, useRouter } from "next/navigation"
-import { Row } from "@tanstack/react-table"
-import { toast } from "sonner"
+import { FC } from "react"
+import { useRouter } from "next/navigation"
 
-import { BillboardColumnSchema } from "@/lib/validation/billboard-column"
 import { Button } from "@/components/ui/Button"
 import {
   DropdownMenu,
@@ -17,20 +15,14 @@ import {
 } from "@/components/ui/DropdownMenu"
 import { Icons } from "@/components/Icons"
 
-interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
+interface RowActionDropdownProps {
+  onOpen: () => void
+  onCopy: () => void
+  editPath: string
 }
 
-export function DataTableRowActions<TData>({ row }: DataTableRowActionsProps<TData>) {
+const RowActionDropdown: FC<RowActionDropdownProps> = ({ onOpen, onCopy, editPath }) => {
   const router = useRouter()
-  const { shopSlug } = useParams()
-
-  const billboard = BillboardColumnSchema.parse(row.original)
-
-  const onCopy = (id: number) => {
-    navigator.clipboard.writeText(String(id))
-    toast.success("ID copied to the clipboard.")
-  }
 
   return (
     <DropdownMenu>
@@ -46,17 +38,17 @@ export function DataTableRowActions<TData>({ row }: DataTableRowActionsProps<TDa
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem onClick={() => onCopy(billboard.id)}>
+        <DropdownMenuItem onClick={onCopy}>
           <Icons.Copy className="mr-2 h-4 w-4" />
           <span>Copy ID</span>
         </DropdownMenuItem>
 
-        <DropdownMenuItem onClick={() => router.push(`/${shopSlug}/billboards/${billboard.id}`)}>
+        <DropdownMenuItem onClick={() => router.push(editPath)}>
           <Icons.Edit className="mr-2 h-4 w-4" />
           <span>Edit</span>
         </DropdownMenuItem>
 
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={onOpen}>
           <Icons.Delete className="mr-2 h-4 w-4" />
           <span>Delete</span>
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
@@ -65,3 +57,5 @@ export function DataTableRowActions<TData>({ row }: DataTableRowActionsProps<TDa
     </DropdownMenu>
   )
 }
+
+export { RowActionDropdown }

@@ -10,7 +10,7 @@ import { toast } from "sonner"
 import { Tables } from "@/types/supabase"
 import { SettingsRequest, SettingsSchema } from "@/lib/validation/settings-form"
 import { useOrigin } from "@/hooks/useOrigin"
-import { Button } from "@/components/ui/Buttonn"
+import { Button } from "@/components/ui/Button"
 import {
   Form,
   FormControl,
@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/Input"
 import { Separator } from "@/components/ui/Separator"
 import { ApiItem } from "@/components/ApiItem"
 import { Heading } from "@/components/Heading"
-import { Icons } from "@/components/Iconss"
+import { Icons } from "@/components/Icons"
 import { ConfirmationModal } from "@/components/modals/ConfirmationModal"
 
 interface SettingsFormProps {

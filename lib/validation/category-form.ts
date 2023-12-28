@@ -2,7 +2,7 @@ import { z } from "zod"
 
 const CategorySchema = z.object({
   name: z.string().min(1),
-  billboardId: z.string(),
+  billboard_id: z.string(),
 })
 
 type CategoryRequest = z.infer<typeof CategorySchema>

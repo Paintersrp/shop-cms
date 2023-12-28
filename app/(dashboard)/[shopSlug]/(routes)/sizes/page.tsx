@@ -1,9 +1,9 @@
 import { format } from "date-fns"
 
 import { getServerClient } from "@/lib/supabase/hook"
+import { Client } from "@/components/api/components/Client"
 
-import { SizeClient } from "./components/SizeClient"
-import { SizeColumn } from "./components/SizeColumns"
+import { SizeColumn, SizeColumns } from "./components/SizeColumns"
 
 const SizesPage = async ({ params }: { params: { shopSlug: string } }) => {
   const sb = getServerClient()
@@ -24,7 +24,13 @@ const SizesPage = async ({ params }: { params: { shopSlug: string } }) => {
   return (
     <div className="flex flex-col">
       <div className="flex-1 space-y-4 pt-6">
-        <SizeClient data={formattedSizes ?? []} />
+        <Client
+          data={formattedSizes}
+          columns={SizeColumns}
+          filterKey="name"
+          entityName="sizes"
+          entityIdName="sizeId"
+        />
       </div>
     </div>
   )

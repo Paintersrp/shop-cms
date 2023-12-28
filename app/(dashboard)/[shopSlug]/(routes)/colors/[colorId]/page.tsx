@@ -21,7 +21,7 @@ const ColorPage = async ({ params }: ColorPageProps) => {
   return (
     <div className="flex flex-col">
       <div className="flex-1 space-y-4 pt-6">
-        <ColorForm initialData={color!} />
+        <ColorForm initialData={color} />
       </div>
     </div>
   )

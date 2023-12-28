@@ -1,9 +1,9 @@
 import { format } from "date-fns"
 
 import { getServerClient } from "@/lib/supabase/hook"
+import { Client } from "@/components/api/components/Client"
 
-import { CategoryClient } from "./components/CategoryClient"
-import { CategoryColumn } from "./components/CategoryColumns"
+import { CategoryColumn, CategoryColumns } from "./components/CategoryColumns"
 
 const CategoriesPage = async ({ params }: { params: { shopSlug: string } }) => {
   const sb = getServerClient()
@@ -24,7 +24,13 @@ const CategoriesPage = async ({ params }: { params: { shopSlug: string } }) => {
   return (
     <div className="flex flex-col">
       <div className="flex-1 space-y-4 pt-6">
-        <CategoryClient data={formattedCategories ?? []} />
+        <Client
+          data={formattedCategories}
+          columns={CategoryColumns}
+          filterKey="name"
+          entityName="categories"
+          entityIdName="categoryId"
+        />
       </div>
     </div>
   )

@@ -5,9 +5,9 @@ import { toast } from "sonner"
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert"
 import { Badge, BadgeProps } from "@/components/ui/Badge"
-import { Icons } from "@/components/Iconss"
+import { Icons } from "@/components/Icons"
 
-import { Button } from "./ui/Buttonn"
+import { Button } from "./ui/Button"
 import { TooltipWrapper } from "./ui/Tooltip"
 
 interface ApiItemProps {

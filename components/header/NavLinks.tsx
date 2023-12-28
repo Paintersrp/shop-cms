@@ -6,8 +6,8 @@ import { useParams, usePathname } from "next/navigation"
 
 import { Tables } from "@/types/supabase"
 import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/Buttonn"
-import { Icons } from "@/components/Iconss"
+import { buttonVariants } from "@/components/ui/Button"
+import { Icons } from "@/components/Icons"
 
 import { ShopSwitcher } from "../ShopSwitcher"
 

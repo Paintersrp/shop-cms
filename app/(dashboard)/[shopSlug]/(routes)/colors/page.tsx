@@ -1,9 +1,9 @@
 import { format } from "date-fns"
 
 import { getServerClient } from "@/lib/supabase/hook"
+import { Client } from "@/components/api/components/Client"
 
-import { ColorClient } from "./components/ColorClient"
-import { ColorColumn } from "./components/ColorColumns"
+import { ColorColumn, ColorColumns } from "./components/ColorColumns"
 
 const ColorsPage = async ({ params }: { params: { shopSlug: string } }) => {
   const sb = getServerClient()
@@ -24,7 +24,13 @@ const ColorsPage = async ({ params }: { params: { shopSlug: string } }) => {
   return (
     <div className="flex flex-col">
       <div className="flex-1 space-y-4 pt-6">
-        <ColorClient data={formattedColors ?? []} />
+        <Client
+          data={formattedColors}
+          columns={ColorColumns}
+          filterKey="name"
+          entityName="colors"
+          entityIdName="colorId"
+        />
       </div>
     </div>
   )

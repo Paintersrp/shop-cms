@@ -5,7 +5,7 @@ import type { ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "@/components/ui/Checkbox"
 import { DataTableColumnHeader } from "@/components/tables/DataTableColumnHeader"
 
-import { CategoryTableRowActions } from "./CategoryTableRowActions"
+import { CategoryRowActions } from "./CategoryRowActions"
 
 export type CategoryColumn = {
   id: number
@@ -67,6 +67,6 @@ export const CategoryColumns: ColumnDef<CategoryColumn>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <CategoryTableRowActions row={row} />,
+    cell: ({ row }) => <CategoryRowActions row={row} />,
   },
 ]
