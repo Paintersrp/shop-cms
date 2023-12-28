@@ -22,7 +22,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
   return (
     <div className="flex flex-col">
       <div className="flex-1 space-y-4 pt-6">
-        <CategoryForm initialData={category!} billboards={billboards!} />
+        <CategoryForm initialData={category!} billboards={billboards ?? []} />
       </div>
     </div>
   )

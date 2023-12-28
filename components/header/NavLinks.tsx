@@ -41,6 +41,10 @@ const NavLinks: FC<NavLinksProps> = ({ shops }) => {
       title: "Colors",
     },
     {
+      href: `/${shopSlug}/products`,
+      title: "Products",
+    },
+    {
       href: `/${shopSlug}/settings`,
       title: "Settings",
     },

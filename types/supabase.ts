@@ -121,6 +121,68 @@ export interface Database {
           }
         ]
       }
+      images: {
+        Row: {
+          created_at: string
+          id: string
+          product_id: number
+          product_type: Database["public"]["Enums"]["store_type"]
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          product_id: number
+          product_type: Database["public"]["Enums"]["store_type"]
+          updated_at: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          product_id?: number
+          product_type?: Database["public"]["Enums"]["store_type"]
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          created_at: string
+          id: number
+          shop_slug: string
+          type: Database["public"]["Enums"]["store_type"]
+          type_id: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          shop_slug: string
+          type: Database["public"]["Enums"]["store_type"]
+          type_id: number
+          updated_at: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          shop_slug?: string
+          type?: Database["public"]["Enums"]["store_type"]
+          type_id?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_shop_slug_fkey"
+            columns: ["shop_slug"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["slug"]
+          }
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -156,12 +218,77 @@ export interface Database {
           }
         ]
       }
+      retail_product: {
+        Row: {
+          category_id: number
+          color_id: number
+          created_at: string
+          id: number
+          images: string[]
+          is_archived: boolean
+          is_featured: boolean
+          name: string
+          price: number
+          size_id: number
+          update_at: string
+        }
+        Insert: {
+          category_id: number
+          color_id: number
+          created_at?: string
+          id?: number
+          images: string[]
+          is_archived?: boolean
+          is_featured?: boolean
+          name: string
+          price: number
+          size_id: number
+          update_at?: string
+        }
+        Update: {
+          category_id?: number
+          color_id?: number
+          created_at?: string
+          id?: number
+          images?: string[]
+          is_archived?: boolean
+          is_featured?: boolean
+          name?: string
+          price?: number
+          size_id?: number
+          update_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "retail_product_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "retail_product_color_id_fkey"
+            columns: ["color_id"]
+            isOneToOne: false
+            referencedRelation: "colors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "retail_product_size_id_fkey"
+            columns: ["size_id"]
+            isOneToOne: false
+            referencedRelation: "sizes"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       shops: {
         Row: {
           created_at: string
           id: number
           name: string
           slug: string
+          type: Database["public"]["Enums"]["store_type"]
           updated_at: string
           userId: string
         }
@@ -170,6 +297,7 @@ export interface Database {
           id?: number
           name: string
           slug: string
+          type?: Database["public"]["Enums"]["store_type"]
           updated_at?: string
           userId: string
         }
@@ -178,6 +306,7 @@ export interface Database {
           id?: number
           name?: string
           slug?: string
+          type?: Database["public"]["Enums"]["store_type"]
           updated_at?: string
           userId?: string
         }
@@ -226,7 +355,7 @@ export interface Database {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      store_type: "retail" | "nft" | "service" | "restaurant"
     }
     CompositeTypes: {
       [_ in never]: never

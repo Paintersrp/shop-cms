@@ -16,6 +16,7 @@ interface BillboardFormProps {
 
 const BillboardForm: FC<BillboardFormProps> = ({ initialData }) => {
   const apiFormConfig: ApiFormConfig<BillboardsRequest> = {
+    existingData: !!initialData,
     initialData,
     schema: BillboardsSchema,
     apiPath: "billboards",

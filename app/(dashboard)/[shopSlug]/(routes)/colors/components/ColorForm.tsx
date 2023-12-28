@@ -15,6 +15,7 @@ interface ColorFormProps {
 
 const ColorForm: FC<ColorFormProps> = ({ initialData }) => {
   const apiFormConfig: ApiFormConfig<ColorRequest> = {
+    existingData: !!initialData,
     initialData,
     schema: ColorSchema,
     apiPath: "colors",

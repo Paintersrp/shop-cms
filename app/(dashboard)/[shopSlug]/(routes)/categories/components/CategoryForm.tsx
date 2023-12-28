@@ -1,23 +1,10 @@
 "use client"
 
-import { useState, type FC } from "react"
-import { useParams, useRouter } from "next/navigation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import axios from "axios"
-import { useForm } from "react-hook-form"
-import { toast } from "sonner"
+import { type FC } from "react"
 
 import { Tables } from "@/types/supabase"
 import { CategoryRequest, CategorySchema } from "@/lib/validation/category-form"
-import { Button } from "@/components/ui/Button"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/Form"
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/Form"
 import { Input } from "@/components/ui/Input"
 import {
   Select,
@@ -26,12 +13,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select"
-import { Separator } from "@/components/ui/Separator"
-import { Heading } from "@/components/Heading"
-import { Icons } from "@/components/Icons"
 import { ApiForm } from "@/components/api/components/ApiForm"
 import { ApiFormConfig, useApiForm } from "@/components/api/hooks/useApiForm"
-import { ConfirmationModal } from "@/components/modals/ConfirmationModal"
 
 interface CategoryFormProps {
   initialData: Tables<"categories">
@@ -47,6 +30,7 @@ const CategoryForm: FC<CategoryFormProps> = ({ initialData, billboards }) => {
     : null
 
   const apiFormConfig: ApiFormConfig<CategoryRequest> = {
+    existingData: !!initialData,
     initialData: formattedInitialData,
     schema: CategorySchema,
     apiPath: "categories",

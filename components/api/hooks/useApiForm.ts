@@ -7,6 +7,7 @@ import { toast } from "sonner"
 import { z } from "zod"
 
 interface ApiFormConfig<T> {
+  existingData: boolean
   initialData: T | null
   schema: z.ZodObject<any>
 
@@ -25,6 +26,7 @@ interface ApiFormConfig<T> {
 }
 
 const useApiForm = <T extends {}>({
+  existingData,
   initialData,
   schema,
   apiPath,
@@ -54,7 +56,7 @@ const useApiForm = <T extends {}>({
     try {
       setIsLoading(true)
 
-      if (initialData) {
+      if (existingData) {
         await axios.patch(`/api/${params.slug}/${apiPath}/${params.id}`, data)
       } else {
         await axios.post(`/api/${params.slug}/${apiPath}`, data)

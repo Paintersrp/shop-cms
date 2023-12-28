@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 
 import { getServerClient } from "@/lib/supabase/hook"
+import { capitalize } from "@/lib/utils"
 
 interface ObjectHandlerConfig {
   tableName: string
@@ -46,7 +47,7 @@ const handleObjects = ({ tableName, objectName, idField, requiredFields }: Objec
         // Validate all required fields are present in request
         for (const field of requiredFields) {
           if (!requestData[field]) {
-            return new NextResponse(`${field} is required`, { status: 400 })
+            return new NextResponse(`${capitalize(field)} is required`, { status: 400 })
           }
         }
 

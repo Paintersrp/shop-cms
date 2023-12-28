@@ -15,6 +15,7 @@ interface SizeFormProps {
 
 const SizeForm: FC<SizeFormProps> = ({ initialData }) => {
   const apiFormConfig: ApiFormConfig<SizeRequest> = {
+    existingData: !!initialData,
     initialData,
     schema: SizeSchema,
     apiPath: "sizes",

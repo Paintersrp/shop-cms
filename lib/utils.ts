@@ -14,3 +14,8 @@ export const truncate = (str: string, length: number) => {
   if (!str || str.length <= length) return str
   return `${str.slice(0, length)}...`
 }
+
+export const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+})
