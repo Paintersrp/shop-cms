@@ -3,8 +3,8 @@
 import { Table } from "@tanstack/react-table"
 
 import { Button } from "@/components/ui/Button"
+import { Icons } from "@/components/ui/Icons"
 import { Input } from "@/components/ui/Input"
-import { Icons } from "@/components/Icons"
 
 import { DataTableFacetedFilter } from "./DataTableFacetedFilter"
 import { DataTableViewOptions } from "./DataTableViewOptions"
@@ -26,6 +26,7 @@ export function DataTableToolbar<TData>({ table, filterKey }: DataTableToolbarPr
           onChange={(event) => table.getColumn(filterKey)?.setFilterValue(event.target.value)}
           className="h-8 w-[200px] lg:w-[300px]"
         />
+        {/* todo */}
         {/* {table.getColumn("status") && (
           <DataTableFacetedFilter
             column={table.getColumn("status")}

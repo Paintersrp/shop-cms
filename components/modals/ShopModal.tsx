@@ -9,7 +9,7 @@ import { toast } from "sonner"
 import * as z from "zod"
 
 import { ShopFormRequest, ShopFormSchema } from "@/lib/validation/shop-form"
-import { useShopModal } from "@/hooks/useShopModal"
+import { useShopModal } from "@/hooks/admin/useShopModal"
 import { Button } from "@/components/ui/Button"
 import {
   Form,
@@ -20,7 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/Form"
 import { Input } from "@/components/ui/Input"
-import { Modal } from "@/components/Modal"
+import { Modal } from "@/components/modals/Modal"
 
 const ShopModal = ({}) => {
   const { open, onClose, onOpen } = useShopModal()

@@ -148,6 +148,83 @@ export interface Database {
         }
         Relationships: []
       }
+      order_items: {
+        Row: {
+          created_at: string
+          id: number
+          item: number
+          order_id: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          item: number
+          order_id: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          item?: number
+          order_id?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_item_fkey"
+            columns: ["item"]
+            isOneToOne: false
+            referencedRelation: "retail_product"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      orders: {
+        Row: {
+          address: string | null
+          created_at: string
+          id: number
+          is_paid: boolean
+          phone: string | null
+          shop_slug: string
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          id?: number
+          is_paid?: boolean
+          phone?: string | null
+          shop_slug: string
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          id?: number
+          is_paid?: boolean
+          phone?: string | null
+          shop_slug?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orders_shop_slug_fkey"
+            columns: ["shop_slug"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["slug"]
+          }
+        ]
+      }
       products: {
         Row: {
           created_at: string
@@ -224,39 +301,42 @@ export interface Database {
           color_id: number
           created_at: string
           id: number
-          images: string[]
+          images: string[] | null
           is_archived: boolean
           is_featured: boolean
           name: string
           price: number
+          shop_slug: string
           size_id: number
-          update_at: string
+          updated_at: string
         }
         Insert: {
           category_id: number
           color_id: number
           created_at?: string
           id?: number
-          images: string[]
+          images?: string[] | null
           is_archived?: boolean
           is_featured?: boolean
           name: string
           price: number
+          shop_slug: string
           size_id: number
-          update_at?: string
+          updated_at?: string
         }
         Update: {
           category_id?: number
           color_id?: number
           created_at?: string
           id?: number
-          images?: string[]
+          images?: string[] | null
           is_archived?: boolean
           is_featured?: boolean
           name?: string
           price?: number
+          shop_slug?: string
           size_id?: number
-          update_at?: string
+          updated_at?: string
         }
         Relationships: [
           {
@@ -272,6 +352,13 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "colors"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "retail_product_shop_slug_fkey"
+            columns: ["shop_slug"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["slug"]
           },
           {
             foreignKeyName: "retail_product_size_id_fkey"

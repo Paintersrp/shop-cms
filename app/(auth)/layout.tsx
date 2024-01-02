@@ -1,6 +1,3 @@
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
-
 interface AuthLayoutProps {
   children: React.ReactNode
 }

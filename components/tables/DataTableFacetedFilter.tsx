@@ -12,9 +12,9 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/Command"
+import { Icons } from "@/components/ui/Icons"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover"
 import { Separator } from "@/components/ui/Separator"
-import { Icons } from "@/components/Icons"
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>
