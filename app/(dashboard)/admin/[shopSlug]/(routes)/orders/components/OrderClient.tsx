@@ -3,8 +3,8 @@
 import type { FC } from "react"
 
 import { Separator } from "@/components/ui/Separator"
+import { DataTable } from "@/components/ui/tables/DataTable"
 import { Heading } from "@/components/admin/Heading"
-import { DataTable } from "@/components/tables/DataTable"
 
 import { OrderColumn, OrderColumns } from "./OrderColumns"
 

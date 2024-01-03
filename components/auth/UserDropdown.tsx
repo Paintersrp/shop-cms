@@ -5,6 +5,8 @@ import Link from "next/link"
 import { adminSiteConfig } from "@/config/admin"
 import { useUserStore } from "@/lib/stores/user"
 import { cn } from "@/lib/utils"
+import { useAuth } from "@/hooks/auth/useAuth"
+import { useAuthModal } from "@/hooks/auth/useAuthModal"
 import { useUserMenu } from "@/hooks/useUserMenu"
 import { Button } from "@/components/ui/Button"
 import {
@@ -17,10 +19,7 @@ import {
 } from "@/components/ui/DropdownMenu"
 import { Icons } from "@/components/ui/Icons"
 
-import { useAuth } from "../../../hooks/auth/useAuth"
-import { useAuthModal } from "../../../hooks/auth/useAuthModal"
-
-export function UserDropdownMenu() {
+export function UserDropdown() {
   const { open, setOpen } = useUserMenu()
   const { user } = useUserStore()
   const { onOpen, setView } = useAuthModal()

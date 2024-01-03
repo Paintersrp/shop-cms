@@ -1,7 +1,8 @@
-import type { FC } from "react"
-import type { UseFormReturn } from "react-hook-form"
+"use client"
 
-import { AuthRequest } from "@/lib/validation/auth"
+import type { FC } from "react"
+
+import { useAuth } from "@/hooks/auth/useAuth"
 import { Button } from "@/components/ui/Button"
 import {
   Form,
@@ -13,22 +14,17 @@ import {
 } from "@/components/ui/Form"
 import { Input } from "@/components/ui/Input"
 
-interface ForgotFormProps {
-  onSubmit: () => void
-  form: UseFormReturn<Omit<AuthRequest, "password">, any, undefined>
-  buttonText: string
-  isLoading: boolean
-}
+const ForgotForm: FC = () => {
+  const { forgotForm, forgotPassword, isLoading } = useAuth()
 
-const ForgotForm: FC<ForgotFormProps> = ({ onSubmit, form, buttonText, isLoading }) => {
   return (
-    <Form {...form}>
+    <Form {...forgotForm}>
       <form
-        onSubmit={onSubmit}
+        onSubmit={forgotForm.handleSubmit(forgotPassword)}
         className="flex flex-col w-full justify-center gap-2 text-foreground space-y-2 px-6 pb-2"
       >
         <FormField
-          control={form.control}
+          control={forgotForm.control}
           name="email"
           render={({ field }) => (
             <FormItem>
@@ -43,7 +39,7 @@ const ForgotForm: FC<ForgotFormProps> = ({ onSubmit, form, buttonText, isLoading
         />
 
         <Button isLoading={isLoading} disabled={isLoading} type="submit" variant="success">
-          {buttonText}
+          Send reset link
         </Button>
       </form>
     </Form>

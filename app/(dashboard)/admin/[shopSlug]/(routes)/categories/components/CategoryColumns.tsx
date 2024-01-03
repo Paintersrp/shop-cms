@@ -3,7 +3,7 @@
 import type { ColumnDef } from "@tanstack/react-table"
 
 import { Checkbox } from "@/components/ui/Checkbox"
-import { DataTableColumnHeader } from "@/components/tables/DataTableColumnHeader"
+import { DataTableColumnHeader } from "@/components/ui/tables/DataTableColumnHeader"
 
 import { CategoryRowActions } from "./CategoryRowActions"
 

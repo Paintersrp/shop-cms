@@ -2,7 +2,8 @@ import type { ReactNode } from "react"
 import { redirect } from "next/navigation"
 
 import { getServerClient } from "@/lib/supabase/hook"
-import { Header } from "@/components/headers/admin/Header"
+import { AdminFooter } from "@/components/admin/AdminFooter"
+import { AdminHeader } from "@/components/admin/AdminHeader"
 
 interface DashboardLayoutProps {
   children: ReactNode
@@ -31,8 +32,9 @@ async function DashboardLayout({ children, params }: DashboardLayoutProps) {
 
   return (
     <>
-      <Header />
-      <section className="px-6 sm:px-4 sm:container sm:py-4">{children}</section>
+      <AdminHeader />
+      <section className="px-6 sm:px-4 sm:container sm:py-4 min-h-[85vh]">{children}</section>
+      <AdminFooter />
     </>
   )
 }

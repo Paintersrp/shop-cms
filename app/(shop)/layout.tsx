@@ -2,8 +2,8 @@ import type { ReactNode } from "react"
 import { Metadata } from "next"
 
 import { shopSiteConfig } from "@/config/shop"
-import { ShopNavbar } from "@/components/headers/shop/ShopNavbar"
-import { ShopFooter } from "@/components/footers/ShopFooter"
+import { ShopFooter } from "@/components/shop/ShopFooter"
+import { ShopNavbar } from "@/components/shop/ShopNavbar"
 
 export const metadata: Metadata = {
   title: {
@@ -30,8 +30,7 @@ async function ShopLayout({ children }: ShopLayoutProps) {
   return (
     <>
       <ShopNavbar />
-      {/* <section className="px-6 sm:px-4 sm:container sm:py-4">{children}</section> */}
-      {children}
+      <section className="min-h-[83.97vh]">{children}</section>
       <ShopFooter />
     </>
   )

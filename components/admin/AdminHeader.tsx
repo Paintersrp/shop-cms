@@ -1,12 +1,12 @@
 import { redirect } from "next/navigation"
 
 import { getServerClient } from "@/lib/supabase/hook"
-import { ThemeToggle } from "@/components/headers/ThemeToggle"
+import { ThemeToggle } from "@/components/ui/composed/ThemeToggle"
+import { UserDropdown } from "@/components/auth/UserDropdown"
 
-import { NavLinks } from "./NavLinks"
-import { UserDropdownMenu } from "./UserDropdown"
+import { AdminNavLinks } from "./AdminNavLinks"
 
-const Header = async () => {
+const AdminHeader = async () => {
   const sb = getServerClient()
   const { data } = await sb.auth.getUser()
 
@@ -17,11 +17,11 @@ const Header = async () => {
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b">
       <div className="px-4 sm:px-2 sm:container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
-        <NavLinks shops={shops ? shops : []} />
+        <AdminNavLinks shops={shops ? shops : []} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1.5">
             <ThemeToggle />
-            <UserDropdownMenu />
+            <UserDropdown />
           </nav>
         </div>
       </div>
@@ -29,4 +29,4 @@ const Header = async () => {
   )
 }
 
-export { Header }
+export { AdminHeader }

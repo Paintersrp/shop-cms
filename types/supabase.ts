@@ -44,6 +44,45 @@ export interface Database {
           }
         ]
       }
+      billboards_images: {
+        Row: {
+          billboard_id: number
+          created_at: string
+          id: number
+          image_id: string
+          updated_at: string
+        }
+        Insert: {
+          billboard_id: number
+          created_at?: string
+          id?: number
+          image_id: string
+          updated_at?: string
+        }
+        Update: {
+          billboard_id?: number
+          created_at?: string
+          id?: number
+          image_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "billboards_images_billboard_id_fkey"
+            columns: ["billboard_id"]
+            isOneToOne: false
+            referencedRelation: "billboards"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "billboards_images_image_id_fkey"
+            columns: ["image_id"]
+            isOneToOne: false
+            referencedRelation: "images"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       categories: {
         Row: {
           billboard_id: number
@@ -123,26 +162,23 @@ export interface Database {
       }
       images: {
         Row: {
+          caption: string | null
           created_at: string
           id: string
-          product_id: number
-          product_type: Database["public"]["Enums"]["store_type"]
           updated_at: string
           url: string
         }
         Insert: {
+          caption?: string | null
           created_at?: string
           id?: string
-          product_id: number
-          product_type: Database["public"]["Enums"]["store_type"]
-          updated_at: string
+          updated_at?: string
           url: string
         }
         Update: {
+          caption?: string | null
           created_at?: string
           id?: string
-          product_id?: number
-          product_type?: Database["public"]["Enums"]["store_type"]
           updated_at?: string
           url?: string
         }
@@ -265,6 +301,7 @@ export interface Database {
           avatar_url: string | null
           full_name: string | null
           id: string
+          role: Database["public"]["Enums"]["role"]
           updated_at: string | null
           username: string | null
           website: string | null
@@ -273,6 +310,7 @@ export interface Database {
           avatar_url?: string | null
           full_name?: string | null
           id: string
+          role?: Database["public"]["Enums"]["role"]
           updated_at?: string | null
           username?: string | null
           website?: string | null
@@ -281,6 +319,7 @@ export interface Database {
           avatar_url?: string | null
           full_name?: string | null
           id?: string
+          role?: Database["public"]["Enums"]["role"]
           updated_at?: string | null
           username?: string | null
           website?: string | null
@@ -442,6 +481,7 @@ export interface Database {
       [_ in never]: never
     }
     Enums: {
+      role: "user" | "admin" | "superadmin"
       store_type: "retail" | "nft" | "service" | "restaurant"
     }
     CompositeTypes: {

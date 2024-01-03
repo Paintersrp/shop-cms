@@ -6,12 +6,11 @@ import Link from "next/link"
 import { adminSiteConfig } from "@/config/admin"
 import { buttonVariants } from "@/components/ui/Button"
 import { Icons } from "@/components/ui/Icons"
-import { Text } from "@/components/ui/Text"
 import { TooltipWrapper } from "@/components/ui/Tooltip"
 
-const Footer: FC = () => {
+const AdminFooter: FC = () => {
   return (
-    <footer className="bg-background bottom-0 z-40 w-full border-t dark:border-slate-700 border-slate-300">
+    <footer className="bg-background bottom-0 z-40 w-full border-t dark:border-slate-700 border-slate-300 mt-8">
       <div className="px-4 sm:px-2 sm:container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
         {/* Copyright Section */}
         <div className="flex space-x-2 items-center">
@@ -63,4 +62,4 @@ const Footer: FC = () => {
   )
 }
 
-export { Footer }
+export { AdminFooter }

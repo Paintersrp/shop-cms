@@ -3,7 +3,15 @@
 import { FC } from "react"
 
 import { useAuthModal } from "@/hooks/auth/useAuthModal"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/Dialog"
+import {
+  Drawer,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/Drawer"
 import { Icons } from "@/components/ui/Icons"
 import { Text } from "@/components/ui/Text"
 
@@ -14,29 +22,51 @@ interface AuthModalProps {
 }
 
 const AuthModal: FC<AuthModalProps> = ({ open = false }) => {
-  const { open: modalOpen, onOpen, onClose, view } = useAuthModal()
+  const { open: modalOpen, onOpen, setOpen, view } = useAuthModal()
+  const isDesktop = useMediaQuery("(min-width: 768px)")
 
   if (open) {
     onOpen()
   }
 
+  if (isDesktop) {
+    return (
+      <Dialog open={modalOpen} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              <Icons.Logo className="mx-auto h-8 w-8 mb-3" />
+              <Text type="h3" className="text-center">
+                {view === "sign-in" && "Sign In"}
+                {view === "sign-up" && "Sign Up"}
+                {view === "forgot" && "Reset Password"}
+              </Text>
+            </DialogTitle>
+          </DialogHeader>
+
+          <AuthModalForm />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
   return (
-    <Dialog open={modalOpen} onOpenChange={onClose}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>
+    <Drawer open={modalOpen} onOpenChange={setOpen}>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>
             <Icons.Logo className="mx-auto h-8 w-8 mb-3" />
             <Text type="h3" className="text-center">
               {view === "sign-in" && "Sign In"}
               {view === "sign-up" && "Sign Up"}
               {view === "forgot" && "Reset Password"}
             </Text>
-          </DialogTitle>
-        </DialogHeader>
-
+          </DrawerTitle>
+        </DrawerHeader>
         <AuthModalForm />
-      </DialogContent>
-    </Dialog>
+        <DrawerFooter />
+      </DrawerContent>
+    </Drawer>
   )
 }
 

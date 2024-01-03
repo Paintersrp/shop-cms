@@ -14,17 +14,17 @@ const ShopNavbar: FC = async () => {
   const categories = await getCategories()
 
   return (
-    <div className="border-b">
+    <header className="border-b">
       <Container>
-        <div className="px-4 sm:px-6 lg:px-8 relative flex items-center">
-          <Link href="/" className="flex lg:ml-0 gap-x-2">
-            <p className="font-bold text-xl">{shopSiteConfig.name}</p>
+        <div className="relative flex items-center">
+          <Link href="/" className="flex flex-shrink-0 lg:ml-0 gap-x-2 py-2">
+            <p className="font-bold text-lg">{shopSiteConfig.name}</p>
           </Link>
           <ShopMainNav data={categories} />
           <ShopNavbarActions />
         </div>
       </Container>
-    </div>
+    </header>
   )
 }
 

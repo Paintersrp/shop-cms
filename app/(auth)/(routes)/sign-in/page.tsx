@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/Button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card"
 import { Icons } from "@/components/ui/Icons"
 import { Text } from "@/components/ui/Text"
-import { AuthModalFormSignIn } from "@/components/auth/AuthModalForm"
+import { SignInForm } from "@/components/auth/SignInForm"
 
 const Page = async () => {
   const sb = getServerClient()
@@ -15,6 +15,8 @@ const Page = async () => {
   if (data.user) {
     redirect("/")
   }
+
+  console.log("this typeof window: ", typeof window)
 
   return (
     <Card className="mt-4">
@@ -28,7 +30,7 @@ const Page = async () => {
       </CardHeader>
 
       <CardContent className="min-w-[400px] p-2">
-        <AuthModalFormSignIn />
+        <SignInForm />
       </CardContent>
       <CardFooter>
         <div className="flex w-full justify-center flex-col space-y-1">

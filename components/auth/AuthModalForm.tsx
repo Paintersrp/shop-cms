@@ -2,60 +2,13 @@
 
 import { FC } from "react"
 
-import { useAuth } from "@/hooks/auth/useAuth"
 import { useAuthModal, type View } from "@/hooks/auth/useAuthModal"
 import { Button } from "@/components/ui/Button"
 
-import { AuthForm } from "./AuthForm"
+import { AnimateHeight } from "../ui/animated/AnimatedHeight"
 import { ForgotForm } from "./ForgotForm"
-
-/**
- * Sign In Component
- */
-const AuthModalFormSignIn: FC = () => {
-  const { form, signIn, isLoading } = useAuth()
-
-  return (
-    <AuthForm
-      onSubmit={form.handleSubmit(signIn)}
-      form={form}
-      buttonText="Sign In"
-      isLoading={isLoading}
-    />
-  )
-}
-
-/**
- * Sign Up Component
- */
-const AuthModalFormSignUp: FC = () => {
-  const { form, signUp, isLoading } = useAuth()
-
-  return (
-    <AuthForm
-      onSubmit={form.handleSubmit(signUp)}
-      form={form}
-      buttonText="Sign Up"
-      isLoading={isLoading}
-    />
-  )
-}
-
-/**
- * Forgot Password Component
- */
-const AuthModalFormForgot: FC = () => {
-  const { forgotForm, forgotPassword, isLoading } = useAuth()
-
-  return (
-    <ForgotForm
-      onSubmit={forgotForm.handleSubmit(forgotPassword)}
-      form={forgotForm}
-      buttonText="Send reset link"
-      isLoading={isLoading}
-    />
-  )
-}
+import { SignInForm } from "./SignInForm"
+import { SignUpForm } from "./SignUpForm"
 
 interface ViewObjects {
   [key: string]: {
@@ -72,7 +25,7 @@ interface ViewObjects {
  */
 const views: ViewObjects = {
   "sign-in": {
-    component: AuthModalFormSignIn,
+    component: SignInForm,
     links: [
       {
         label: "Forgot Password?",
@@ -85,7 +38,7 @@ const views: ViewObjects = {
     ],
   },
   "sign-up": {
-    component: AuthModalFormSignUp,
+    component: SignUpForm,
     links: [
       {
         label: "Already a Member?",
@@ -94,7 +47,7 @@ const views: ViewObjects = {
     ],
   },
   forgot: {
-    component: AuthModalFormForgot,
+    component: ForgotForm,
     links: [
       {
         label: "Return to Sign In",
@@ -126,25 +79,27 @@ const AuthModalForm: FC = () => {
   const ViewComponent = currentView ? currentView.component : null
 
   return (
-    <div className="space-y-1 -mt-2">
-      {ViewComponent && <ViewComponent />}
+    <AnimateHeight>
+      <div className="space-y-1">
+        {ViewComponent && <ViewComponent />}
 
-      <div className="flex justify-center flex-col space-y-1">
-        {currentView &&
-          currentView.links.map((link, index) => (
-            <Button
-              key={`view-link-${index}`}
-              size="xs"
-              variant="link"
-              className="p-0 text-slate-200 hover:text-blue-300"
-              onClick={() => switchView(link.view)}
-            >
-              {link.label}
-            </Button>
-          ))}
+        <div className="flex justify-center flex-col space-y-1">
+          {currentView &&
+            currentView.links.map((link, index) => (
+              <Button
+                key={`view-link-${index}`}
+                size="xs"
+                variant="link"
+                className="p-0 text-slate-200 hover:text-blue-300"
+                onClick={() => switchView(link.view)}
+              >
+                {link.label}
+              </Button>
+            ))}
+        </div>
       </div>
-    </div>
+    </AnimateHeight>
   )
 }
 
-export { AuthModalForm, AuthModalFormSignIn, AuthModalFormSignUp, AuthModalFormForgot }
+export { AuthModalForm }

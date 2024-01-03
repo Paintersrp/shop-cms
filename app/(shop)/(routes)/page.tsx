@@ -11,9 +11,7 @@ const ShopPage: FC = async () => {
 
   return (
     <Container>
-      <div className="space-y-10 pb-10">
-        <Billboard data={billboard} />
-      </div>
+      <div className="space-y-10 pb-10">{billboard && <Billboard data={billboard} />}</div>
     </Container>
   )
 }

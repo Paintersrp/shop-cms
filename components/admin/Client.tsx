@@ -8,9 +8,9 @@ import { capitalize } from "@/lib/utils"
 import { Button } from "@/components/ui/Button"
 import { Icons } from "@/components/ui/Icons"
 import { Separator } from "@/components/ui/Separator"
+import { DataTable } from "@/components/ui/tables/DataTable"
 import { ApiList } from "@/components/admin/ApiList"
 import { Heading } from "@/components/admin/Heading"
-import { DataTable } from "@/components/tables/DataTable"
 
 interface ClientProps<T> {
   data: T[]
