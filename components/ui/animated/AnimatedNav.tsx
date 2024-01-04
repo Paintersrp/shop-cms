@@ -44,8 +44,7 @@ const AnimatedNav: FC<AnimatedNavProps> = ({
   return (
     <nav
       ref={navRef}
-      className={`
-        flex 
+      className={`      
         flex-shrink-0 
         justify-center 
         items-center 
@@ -53,6 +52,9 @@ const AnimatedNav: FC<AnimatedNavProps> = ({
         z-0 
         py-2 
         mx-6
+
+        hidden
+        sm:flex
       `}
       onPointerLeave={() => setHoveredItemIndex(null)}
     >

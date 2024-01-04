@@ -33,7 +33,7 @@ const Client: FC<ClientProps<any>> = ({ data, columns, filterKey, entityName, en
           title={`${formattedEntityName} (${data.length})`}
           description={`Manage ${entityName} for your shop`}
         />
-        <Button onClick={() => router.push(`/${shopSlug}/${entityName}/new`)}>
+        <Button onClick={() => router.push(`/admin/${shopSlug}/${entityName}/new`)}>
           <Icons.PlusCircle className="mr-2 h-5 w-5" /> Add New
         </Button>
       </div>

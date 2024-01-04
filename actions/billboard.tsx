@@ -8,6 +8,8 @@ export interface BillboardRecord {
   shop_slug: string
   updated_at: string
   images: {
+    alt: string
+    caption: string
     image: {
       created_at: string
       updated_at: string
@@ -35,7 +37,7 @@ const getBillboard = async (id: string): Promise<BillboardRecord | undefined> =>
       .select(
         `
           *,
-          images: billboards_images!inner (
+          images: billboards_images!inner (*,
             image: images!inner (*)
           )
         `

@@ -57,7 +57,7 @@ const buttonVariants = cva(
           bg-accent 
           text-accent-foreground 
           dark:hover:bg-accent/80 
-          hover:bg-accent/70
+          hover:bg-accent/80
         `,
         success: `
           bg-success 
@@ -79,6 +79,14 @@ const buttonVariants = cva(
           transition-colors 
           duration-[400ms]        
           hover:text-accent-foreground
+        `,
+        icon: `
+          rounded-full
+          bg-white
+          text-gray-600
+          transition
+          duration-100
+          hover:scale-105      
         `,
       },
       size: {

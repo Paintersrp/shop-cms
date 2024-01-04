@@ -8,6 +8,7 @@ import {
   Copy,
   Copyright,
   Edit,
+  Expand,
   EyeOff,
   ImagePlus,
   LogOut,
@@ -36,6 +37,51 @@ export const Icons = {
   ArrowDown,
   ArrowUp,
   Sun: Sun,
+
+  Twitter,
+  Contact: MailPlus,
+  User,
+  Close: X,
+  Copyright,
+  Settings,
+  LogOut,
+  Register: UserPlus,
+  ShoppingBag,
+
+  ChevronsUpDown,
+  ChevronLeft,
+  ChevronRight,
+  Check,
+  PlusCircle,
+  Plus,
+  Delete: Trash,
+  Server,
+  Copy,
+  ImagePlus,
+  SlidersHorizontal,
+  EyeOff,
+  MoreHorizontal,
+  Edit,
+  View,
+  Expand,
+  ShoppingCart: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <circle cx="8" cy="21" r="1" />
+      <circle cx="19" cy="21" r="1" />
+      <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+    </svg>
+  ),
   Moon: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -54,30 +100,25 @@ export const Icons = {
       <path d="M21 5h-4" />
     </svg>
   ),
-  Twitter,
-  Contact: MailPlus,
-  User,
-  Close: X,
-  Copyright,
-  Settings,
-  LogOut,
-  Register: UserPlus,
-  ShoppingBag,
-  ChevronsUpDown,
-  ChevronLeft,
-  ChevronRight,
-  Check,
-  PlusCircle,
-  Plus,
-  Delete: Trash,
-  Server,
-  Copy,
-  ImagePlus,
-  SlidersHorizontal,
-  EyeOff,
-  MoreHorizontal,
-  Edit,
-  View,
+  Bear: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <circle cx="11" cy="4" r="2" />
+      <circle cx="18" cy="8" r="2" />
+      <circle cx="20" cy="16" r="2" />
+      <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z" />
+    </svg>
+  ),
   CaretSort: (props: LucideProps) => (
     <svg
       width="15"

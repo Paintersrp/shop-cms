@@ -1,45 +1,78 @@
-import type { FC } from "react"
+"use client"
+
+import { useRef, type FC } from "react"
 import Image from "next/image"
 import { type BillboardRecord } from "@/actions/billboard"
+import Autoplay from "embla-carousel-autoplay"
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselDots,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/Carousel"
 
 interface BillboardProps {
   data: BillboardRecord
 }
 
 const Billboard: FC<BillboardProps> = ({ data }) => {
-  const rowSpan = `row-span-${data.images.length}`
+  const plugin = useRef(Autoplay({ delay: 15000, stopOnInteraction: true }))
 
   return (
-    <div className="flex justify-center">
-      <div className="max-w-[1200px] w-full p-4 sm:px-6 lg:px-8 rounded-xl overflow-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
-          {/* Centerpiece Image */}
-          <div className={`md:col-span-3 md:${rowSpan} rounded-xl overflow-hidden relative`}>
-            <Image
-              src={data.image_url}
-              alt={data.label}
-              fill
-              className="border rounded-xl object-cover"
-            />
-            <div className="absolute inset-0 flex justify-center items-center">
-              <div className="text-center font-semibold text-xl sm:text-2xl lg:text-6xl text-white drop-shadow-[0_1.5px_1.5px_rgba(0,0,0,1)] underline underline-offset-[13px]">
-                {data.label}
+    <Carousel
+      animate={{ type: "scale", factor: 0.5 }}
+      plugins={[plugin.current]}
+      className="w-full"
+      onMouseEnter={plugin.current.stop}
+      onMouseLeave={() => {
+        plugin.current.play()
+      }}
+    >
+      <CarouselContent>
+        <CarouselItem key="centerpiece" index={0}>
+          <div className="p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden">
+            <div className="rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover">
+              <Image
+                src={data.image_url}
+                alt={data.label}
+                fill
+                className="border rounded-xl object-cover"
+              />
+              <div className="absolute inset-0 flex justify-center items-center">
+                <div className="text-center font-bold text-3xl sm:text-5xl lg:text-6xl text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]">
+                  {data.label}
+                </div>
               </div>
             </div>
           </div>
-
-          {/* Smaller Grid Items */}
-          {data.images.map((item, index) => (
-            <div
-              key={index}
-              className="md:col-start-4 rounded-xl overflow-hidden relative aspect-square"
-            >
-              <Image src={item.image.url} alt="" fill className="border rounded-xl object-cover" />
+        </CarouselItem>
+        {data.images.map((item, index) => (
+          <CarouselItem key={item.image.id} index={index + 1}>
+            <div className="p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden">
+              <div className="rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover">
+                <Image
+                  src={item.image.url}
+                  alt={item.alt}
+                  fill
+                  className="border rounded-xl object-cover"
+                />
+                <div className="absolute inset-0 flex justify-center items-center">
+                  <div className="text-center font-bold text-3xl sm:text-5xl lg:text-6xl text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] ">
+                    {item.caption}
+                  </div>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      {/* <CarouselPrevious /> */}
+      {/* <CarouselNext /> */}
+      <CarouselDots />
+    </Carousel>
   )
 }
 

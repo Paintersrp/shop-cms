@@ -46,21 +46,27 @@ export interface Database {
       }
       billboards_images: {
         Row: {
+          alt: string | null
           billboard_id: number
+          caption: string | null
           created_at: string
           id: number
           image_id: string
           updated_at: string
         }
         Insert: {
+          alt?: string | null
           billboard_id: number
+          caption?: string | null
           created_at?: string
           id?: number
           image_id: string
           updated_at?: string
         }
         Update: {
+          alt?: string | null
           billboard_id?: number
+          caption?: string | null
           created_at?: string
           id?: number
           image_id?: string

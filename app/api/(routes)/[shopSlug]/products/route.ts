@@ -20,8 +20,6 @@ export async function POST(req: Request, { params }: { params: { shopSlug: strin
 
     const requestData = await req.json()
 
-    console.log(requestData)
-
     // Validate all required fields are present in request
     for (const field of REQUIRED_FIELDS) {
       if (!requestData[field]) {
@@ -85,6 +83,8 @@ export async function GET(req: Request, { params }: { params: { shopSlug: string
     const colorId = searchParams.get("colorId") || undefined
     const sizeId = searchParams.get("sizeId") || undefined
     const isFeatured = searchParams.get("isFeatured") || undefined
+
+    console.log(type)
 
     if (!data.user) {
       return new NextResponse("Unauthenticated", { status: 401 })

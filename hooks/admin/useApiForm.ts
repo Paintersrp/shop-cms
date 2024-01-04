@@ -63,7 +63,7 @@ const useApiForm = <T extends {}>({
       }
 
       router.refresh()
-      router.push(`/${params.slug}/${apiPath}`)
+      router.push(`/admin/${params.slug}/${apiPath}`)
 
       toast.success(toasts.submitSuccess)
     } catch (error) {
